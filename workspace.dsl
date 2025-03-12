@@ -59,6 +59,16 @@ workspace {
             autoLayout
         }
 
+        dynamic socialNetwork "SendMessage" "Отправка сообщения" {
+            user -> webApp "Пишет сообщение"
+            webApp -> apiGateway "Отправляет запрос"
+            apiGateway -> messagingService "Передаёт данные"
+            messagingService -> database "Сохраняет сообщение"
+            messagingService -> notificationService "Оповещает получателя"
+            autoLayout
+        }
+
+
         styles {
             element "Person" {
                 shape Person
@@ -72,5 +82,6 @@ workspace {
                 color #ffffff
             }
         }
+
     }
 }
